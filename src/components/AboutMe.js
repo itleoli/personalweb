@@ -51,12 +51,13 @@ const AboutMe = () => {
     </div>
   );
 
-  const TagsList = ({ title, items, className }) => (
-    <div className={`tags-container ${className}`}>
-      <span className="tags-title">{title}:</span>
-      <div className="tags-wrapper">
+  const TagsInfoItem = ({ label, items, icon }) => (
+    <div className="info-item">
+      {icon && <span className="info-icon">{icon}</span>}
+      <span className="info-label">{label}:</span>
+      <div className="info-tags">
         {items?.map((item, index) => (
-          <span key={index} className="tag">
+          <span key={index} className="info-tag">
             {item}
           </span>
         ))}
@@ -109,25 +110,23 @@ const AboutMe = () => {
                 <InfoItem label="地点" value={aboutData.location} icon="📍" />
                 <InfoItem label="学历" value={aboutData.education} icon="🎓" />
                 <InfoItem label="经验" value={`${aboutData.experience_years}年`} icon="⏱️" />
-              </div>
-              
-              {/* 技能标签区域 */}
-              <div className="tags-section">
-                <TagsList 
-                  title="专业技能" 
+                
+                {/* 技能标签 - 与基本信息保持一致 */}
+                <TagsInfoItem 
+                  label="专业技能" 
                   items={aboutData.skills} 
-                  className="skills-tags"
+                  icon="🛠️"
                 />
-                <TagsList 
-                  title="兴趣爱好" 
+                <TagsInfoItem 
+                  label="兴趣爱好" 
                   items={aboutData.interests} 
-                  className="interests-tags"
+                  icon="🎯"
                 />
                 {aboutData.languages && aboutData.languages.length > 0 && (
-                  <TagsList 
-                    title="语言能力" 
+                  <TagsInfoItem 
+                    label="语言能力" 
                     items={aboutData.languages} 
-                    className="languages-tags"
+                    icon="🌐"
                   />
                 )}
               </div>
