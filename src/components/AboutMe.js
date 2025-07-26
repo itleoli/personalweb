@@ -18,12 +18,11 @@ const AboutMe = () => {
     avatar_path: './images/avatar.svg'
   });
   
-  const [loading, setLoading] = useState(false); // Changed to false for better deployment experience
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        // Only try to fetch if we're in development or have a backend
         if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
           const response = await axios.get('/api/about');
           if (response.data) {
@@ -37,7 +36,6 @@ const AboutMe = () => {
       }
     };
 
-    // Add a small delay to prevent loading flash in static deployments
     const timer = setTimeout(() => {
       fetchAboutData();
     }, 100);
@@ -45,19 +43,17 @@ const AboutMe = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const InfoRow = ({ label, value, icon }) => (
-    <div className="info-row">
+  const InfoItem = ({ label, value, icon }) => (
+    <div className="info-item">
       {icon && <span className="info-icon">{icon}</span>}
-      <div className="info-content">
-        <span className="info-label">{label}</span>
-        <span className="info-value">{value}</span>
-      </div>
+      <span className="info-label">{label}:</span>
+      <span className="info-value">{value}</span>
     </div>
   );
 
   const TagsList = ({ title, items, className }) => (
     <div className={`tags-container ${className}`}>
-      <h4 className="tags-title">{title}</h4>
+      <span className="tags-title">{title}:</span>
       <div className="tags-wrapper">
         {items?.map((item, index) => (
           <span key={index} className="tag">
@@ -84,11 +80,6 @@ const AboutMe = () => {
   return (
     <section id="about" className="about-section">
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">关于我</h2>
-          <p className="section-subtitle">了解我的背景、技能和兴趣</p>
-        </div>
-        
         <div className="about-layout">
           {/* 左侧头像区域 */}
           <div className="avatar-section">
@@ -102,70 +93,49 @@ const AboutMe = () => {
                     e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSIxMDAiIGZpbGw9IiNmNWY1ZjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI4MCIgcj0iMzAiIGZpbGw9IiNkZGQiLz48cGF0aCBkPSJNNTAgMTUwIEMxMDAiIGZpbGw9IiNkZGQiLz48L3N2Zz4=";
                   }}
                 />
-                <div className="avatar-glow"></div>
-              </div>
-              <div className="avatar-decoration">
-                <div className="decoration-ring"></div>
-                <div className="decoration-dots">
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* 右侧信息区域 */}
+          {/* 右侧信息区域 - 整合所有信息 */}
           <div className="info-section">
-            {/* 基本信息卡片 */}
-            <div className="info-card basic-info">
-              <div className="card-header">
-                <h3 className="card-title">基本信息</h3>
-                <div className="title-decoration"></div>
+            <div className="info-card unified-info">
+              {/* 基本信息 */}
+              <div className="basic-info-grid">
+                <InfoItem label="姓名" value={aboutData.name} icon="👤" />
+                <InfoItem label="性别" value={aboutData.gender} icon="⚤" />
+                <InfoItem label="MBTI" value={aboutData.mbti} icon="🧠" />
+                <InfoItem label="职业" value={aboutData.profession} icon="💼" />
+                <InfoItem label="地点" value={aboutData.location} icon="📍" />
+                <InfoItem label="学历" value={aboutData.education} icon="🎓" />
+                <InfoItem label="经验" value={`${aboutData.experience_years}年`} icon="⏱️" />
               </div>
               
-              <div className="info-grid">
-                <InfoRow label="姓名" value={aboutData.name} icon="👤" />
-                <InfoRow label="性别" value={aboutData.gender} icon="⚤" />
-                <InfoRow label="MBTI" value={aboutData.mbti} icon="🧠" />
-                <InfoRow label="职业" value={aboutData.profession} icon="💼" />
-                <InfoRow label="地点" value={aboutData.location} icon="📍" />
-                <InfoRow label="学历" value={aboutData.education} icon="🎓" />
-                <InfoRow label="经验" value={`${aboutData.experience_years}年`} icon="⏱️" />
-              </div>
-            </div>
-
-            {/* 个人简介卡片 */}
-            <div className="info-card bio-card">
-              <div className="card-header">
-                <h3 className="card-title">个人简介</h3>
-                <div className="title-decoration"></div>
-              </div>
-              <div className="bio-content">
-                <p className="bio-text">{aboutData.bio}</p>
-              </div>
-            </div>
-
-            {/* 技能和兴趣卡片 */}
-            <div className="info-card skills-interests">
-              <div className="skills-interests-layout">
+              {/* 技能标签区域 */}
+              <div className="tags-section">
                 <TagsList 
                   title="专业技能" 
                   items={aboutData.skills} 
-                  className="skills-section"
+                  className="skills-tags"
                 />
                 <TagsList 
                   title="兴趣爱好" 
                   items={aboutData.interests} 
-                  className="interests-section"
+                  className="interests-tags"
                 />
                 {aboutData.languages && aboutData.languages.length > 0 && (
                   <TagsList 
                     title="语言能力" 
                     items={aboutData.languages} 
-                    className="languages-section"
+                    className="languages-tags"
                   />
                 )}
+              </div>
+
+              {/* 个人简介 */}
+              <div className="bio-section">
+                <h4 className="bio-title">个人简介</h4>
+                <p className="bio-text">{aboutData.bio}</p>
               </div>
             </div>
           </div>
