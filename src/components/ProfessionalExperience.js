@@ -9,24 +9,32 @@ const ProfessionalExperience = () => {
     management: '拥有5年团队管理经验，曾成功领导过50+人的跨职能敏捷团队，包括产品、技术、设计、运营等多个部门。擅长敏捷开发管理、OKR目标管理和企业文化建设，团队交付效率提升40%以上。具备优秀的沟通协调能力和战略决策能力，能够在高压环境下保持团队高效运作和积极氛围。注重人才培养和团队成长，建立了完善的绩效评估、职业发展和技能培训体系，团队留存率达95%以上。'
   });
   
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Changed to false for better deployment experience
   const [expandedCards, setExpandedCards] = useState(new Set());
 
   useEffect(() => {
     const fetchExperienceData = async () => {
       try {
-        const response = await axios.get('/api/experience');
-        if (response.data) {
-          setExperienceData(response.data);
+        // Only try to fetch if we're in development or have a backend
+        if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+          const response = await axios.get('/api/experience');
+          if (response.data) {
+            setExperienceData(response.data);
+          }
         }
       } catch (error) {
-        console.log('使用默认履历信息');
+        console.log('使用默认履历信息 - API不可用或在静态部署中');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchExperienceData();
+    // Add a small delay to prevent loading flash in static deployments
+    const timer = setTimeout(() => {
+      fetchExperienceData();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleExpand = (index) => {
@@ -40,12 +48,12 @@ const ProfessionalExperience = () => {
   };
 
   const ExperienceCard = ({ experience, index, isExpanded }) => {
-    const truncateText = (text, maxLength = 200) => { // Increased from 150 to 200
+    const truncateText = (text, maxLength = 200) => {
       if (text.length <= maxLength) return text;
       return text.slice(0, maxLength) + '...';
     };
 
-    const shouldShowExpand = experience.content.length > 200; // Increased threshold
+    const shouldShowExpand = experience.content.length > 200;
 
     return (
       <div className={`experience-card ${isExpanded ? 'expanded' : ''}`}>

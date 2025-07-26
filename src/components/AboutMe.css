@@ -1,12 +1,14 @@
 /* ==========================================================================
-   About Me Section - Complete Rewrite
-   Modern, Flexible, Content-Adaptive Design
+   About Me Section - Enhanced for Deployment
+   Modern, Flexible, Content-Adaptive Design with Better Compatibility
    ========================================================================== */
 
 .about-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  padding: 100px 0;
 }
 
 .about-section::before {
@@ -42,7 +44,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: white; /* Fallback for browsers that don't support background-clip */
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure text is visible if background-clip fails */
+@supports not (-webkit-background-clip: text) {
+  .section-title {
+    color: white;
+  }
 }
 
 .section-subtitle {
@@ -185,6 +195,8 @@
 
 .info-card {
   background: rgba(255, 255, 255, 0.95);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background: white;
   backdrop-filter: blur(10px);
   border-radius: 24px;
   padding: 2.5rem;
@@ -195,6 +207,18 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  /* Enhanced for deployment */
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Enhanced backdrop filter with fallback */
+@supports (backdrop-filter: blur(10px)) {
+  .info-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .info-card::before {

@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Professional Experience Section - Complete Rewrite
-   Modern, Interactive, Content-Adaptive Design
+   Professional Experience Section - Enhanced for Deployment
+   Modern, Interactive, Content-Adaptive Design with Better Compatibility
    ========================================================================== */
 
 .experience-section {
@@ -8,6 +8,7 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+  padding: 100px 0;
 }
 
 /* Background Elements */
@@ -31,6 +32,16 @@
     linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: gridMove 20s linear infinite;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .background-grid {
+    animation: none;
+  }
+  .shape {
+    animation: none;
+  }
 }
 
 .floating-shapes {
@@ -424,11 +435,24 @@
   align-items: center;
   gap: 3rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Enhanced backdrop filter with fallback */
+@supports (backdrop-filter: blur(10px)) {
+  .statistics {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .stat-item {

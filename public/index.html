@@ -4,15 +4,56 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="个人网站 - 关于我、专业履历和联系方式"
-    />
-    <title>个人网站</title>
+    <meta name="theme-color" content="#667eea" />
+    <meta name="description" content="李明轩的个人网站 - 高级产品经理、科技创业者、全栈开发者。了解我的专业背景、技能和项目经验。" />
+    <meta name="keywords" content="产品经理,创业者,全栈开发,用户体验,团队管理" />
+    <meta name="author" content="李明轩" />
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="李明轩 - 个人网站" />
+    <meta property="og:description" content="高级产品经理、科技创业者、全栈开发者的个人网站" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <title>李明轩 - 个人网站 | 产品经理 & 创业者</title>
+    
+    <!-- Fallback styles for critical CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      
+      .loading-fallback {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+        font-size: 1.2rem;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <noscript>
+      <div class="loading-fallback">
+        <p>您需要启用 JavaScript 来运行这个应用程序。<br>You need to enable JavaScript to run this app.</p>
+      </div>
+    </noscript>
+    <div id="root">
+      <div class="loading-fallback">
+        <p>加载中...</p>
+      </div>
+    </div>
   </body>
 </html>
