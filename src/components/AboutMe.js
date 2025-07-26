@@ -17,9 +17,10 @@ const AboutMe = () => {
     languages: ['中文(母语)', '英语(流利)', '日语(基础)'],
     avatar_path: '/images/avatar.svg'
   });
+  
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 从后端获取个人信息
     const fetchAboutData = async () => {
       try {
         const response = await axios.get('/api/about');
@@ -28,84 +29,135 @@ const AboutMe = () => {
         }
       } catch (error) {
         console.log('使用默认个人信息');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAboutData();
   }, []);
 
+  const InfoRow = ({ label, value, icon }) => (
+    <div className="info-row">
+      {icon && <span className="info-icon">{icon}</span>}
+      <div className="info-content">
+        <span className="info-label">{label}</span>
+        <span className="info-value">{value}</span>
+      </div>
+    </div>
+  );
+
+  const TagsList = ({ title, items, className }) => (
+    <div className={`tags-container ${className}`}>
+      <h4 className="tags-title">{title}</h4>
+      <div className="tags-wrapper">
+        {items?.map((item, index) => (
+          <span key={index} className="tag">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (loading) {
+    return (
+      <section id="about" className="about-section">
+        <div className="container">
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <p>加载个人信息中...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="about" className="about-section">
       <div className="container">
-        <h2 className="section-title">关于我</h2>
-        <div className="about-content">
-          <div className="about-image">
-                              <img 
-                    src={aboutData.avatar_path || "/images/avatar.svg"} 
-                    alt="个人头像" 
-                    className="avatar-image"
-                  />
-            <div className="background-overlay"></div>
+        <div className="section-header">
+          <h2 className="section-title">关于我</h2>
+          <p className="section-subtitle">了解我的背景、技能和兴趣</p>
+        </div>
+        
+        <div className="about-layout">
+          {/* 左侧头像区域 */}
+          <div className="avatar-section">
+            <div className="avatar-container">
+              <div className="avatar-wrapper">
+                <img 
+                  src={aboutData.avatar_path || "/images/avatar.svg"} 
+                  alt={`${aboutData.name}的头像`}
+                  className="avatar-image"
+                  onError={(e) => {
+                    e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWY1Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNDAiIGZpbGw9IiNkZGQiLz4KPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM5OTkiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIg++i/meaYr+eCueS9jOeUn+eJh+eahOWktOWDjzwvdGV4dD4KPC9zdmc+";
+                  }}
+                />
+                <div className="avatar-glow"></div>
+              </div>
+              <div className="avatar-decoration">
+                <div className="decoration-ring"></div>
+                <div className="decoration-dots">
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="about-info">
-            <div className="info-card">
-              <div className="info-item">
-                <span className="info-label">姓名:</span>
-                <span className="info-value">{aboutData.name}</span>
+
+          {/* 右侧信息区域 */}
+          <div className="info-section">
+            {/* 基本信息卡片 */}
+            <div className="info-card basic-info">
+              <div className="card-header">
+                <h3 className="card-title">基本信息</h3>
+                <div className="title-decoration"></div>
               </div>
               
-              <div className="info-item">
-                <span className="info-label">性别:</span>
-                <span className="info-value">{aboutData.gender}</span>
+              <div className="info-grid">
+                <InfoRow label="姓名" value={aboutData.name} icon="👤" />
+                <InfoRow label="性别" value={aboutData.gender} icon="⚤" />
+                <InfoRow label="MBTI" value={aboutData.mbti} icon="🧠" />
+                <InfoRow label="职业" value={aboutData.profession} icon="💼" />
+                <InfoRow label="地点" value={aboutData.location} icon="📍" />
+                <InfoRow label="学历" value={aboutData.education} icon="🎓" />
+                <InfoRow label="经验" value={`${aboutData.experience_years}年`} icon="⏱️" />
               </div>
-              
-              <div className="info-item">
-                <span className="info-label">MBTI性格类型:</span>
-                <span className="info-value">{aboutData.mbti}</span>
+            </div>
+
+            {/* 个人简介卡片 */}
+            <div className="info-card bio-card">
+              <div className="card-header">
+                <h3 className="card-title">个人简介</h3>
+                <div className="title-decoration"></div>
               </div>
-              
-              <div className="info-item">
-                <span className="info-label">职业属性:</span>
-                <span className="info-value">{aboutData.profession}</span>
+              <div className="bio-content">
+                <p className="bio-text">{aboutData.bio}</p>
               </div>
-              
-              <div className="info-item">
-                <span className="info-label">工作地点:</span>
-                <span className="info-value">{aboutData.location}</span>
-              </div>
-              
-              <div className="info-item">
-                <span className="info-label">教育背景:</span>
-                <span className="info-value">{aboutData.education}</span>
-              </div>
-              
-              <div className="info-item">
-                <span className="info-label">工作经验:</span>
-                <span className="info-value">{aboutData.experience_years}年</span>
-              </div>
-              
-              <div className="skills-section">
-                <h3>专业技能</h3>
-                <div className="skills-tags">
-                  {aboutData.skills?.map((skill, index) => (
-                    <span key={index} className="skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="interests-section">
-                <h3>兴趣爱好</h3>
-                <div className="interests-tags">
-                  {aboutData.interests?.map((interest, index) => (
-                    <span key={index} className="interest-tag">{interest}</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="bio-section">
-                <h3>个人简介</h3>
-                <p>{aboutData.bio}</p>
+            </div>
+
+            {/* 技能和兴趣卡片 */}
+            <div className="info-card skills-interests">
+              <div className="skills-interests-layout">
+                <TagsList 
+                  title="专业技能" 
+                  items={aboutData.skills} 
+                  className="skills-section"
+                />
+                <TagsList 
+                  title="兴趣爱好" 
+                  items={aboutData.interests} 
+                  className="interests-section"
+                />
+                {aboutData.languages && aboutData.languages.length > 0 && (
+                  <TagsList 
+                    title="语言能力" 
+                    items={aboutData.languages} 
+                    className="languages-section"
+                  />
+                )}
               </div>
             </div>
           </div>
