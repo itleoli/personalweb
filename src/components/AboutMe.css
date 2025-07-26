@@ -89,7 +89,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
+  /* Remove individual margin-bottom since we're using grid gap */
   border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
