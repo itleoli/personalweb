@@ -7,32 +7,57 @@ main {
 }
 
 section {
-  padding: 80px 0;
-  min-height: 100vh;
+  padding: 100px 0; /* Increased padding for more space */
+  min-height: auto; /* Changed from 100vh to auto for flexible height */
   display: flex;
   align-items: center;
+}
+
+/* Special handling for sections with more content */
+#about,
+#experience {
+  min-height: 80vh; /* Minimum height but allow expansion */
+  align-items: flex-start; /* Align content to top instead of center */
+  padding: 120px 0; /* Extra padding for content-heavy sections */
+}
+
+#contact {
+  min-height: 100vh; /* Contact section can remain full height */
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%; /* Ensure full width usage */
 }
 
 .section-title {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem; /* Increased margin for better spacing */
   text-align: center;
   color: #2c3e50;
+  font-weight: 600; /* Added font weight */
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
   .section-title {
     font-size: 2rem;
+    margin-bottom: 2rem; /* Reduced margin on mobile */
   }
   
   section {
-    padding: 60px 0;
+    padding: 80px 0; /* Increased mobile padding */
+  }
+
+  #about,
+  #experience {
+    padding: 80px 0; /* Consistent mobile padding */
+    min-height: auto; /* Full flexibility on mobile */
+  }
+
+  #contact {
+    min-height: 80vh; /* Reduced height on mobile */
   }
 }

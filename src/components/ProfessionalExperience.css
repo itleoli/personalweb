@@ -1,6 +1,7 @@
 .experience-section {
   background: #fff;
   position: relative;
+  padding: 100px 0; /* Increased padding for more space */
 }
 
 .experience-section::before {
@@ -27,19 +28,22 @@
 
 .experience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Increased minimum width */
+  gap: 2.5rem; /* Increased gap */
   margin-top: 3rem;
 }
 
 .experience-card {
   background: white;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 2.5rem; /* Increased padding */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  min-height: 350px; /* Added minimum height to accommodate longer text */
+  display: flex;
+  flex-direction: column;
 }
 
 .experience-card::before {
@@ -60,51 +64,106 @@
 .card-header {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
+  margin-bottom: 2rem; /* Increased margin */
+  gap: 1.2rem; /* Increased gap */
+  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .card-icon {
   font-size: 2.5rem;
   background: linear-gradient(135deg, var(--card-color), rgba(255, 255, 255, 0.2));
-  width: 60px;
-  height: 60px;
+  width: 65px; /* Slightly larger */
+  height: 65px; /* Slightly larger */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 .card-title {
   color: #2c3e50;
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly larger */
   margin: 0;
   font-weight: 600;
+  line-height: 1.3; /* Better line height */
+}
+
+.card-content {
+  flex: 1; /* Allow content to expand */
+  display: flex;
+  flex-direction: column;
 }
 
 .card-content p {
   color: #666;
-  line-height: 1.8;
-  font-size: 1rem;
+  line-height: 1.8; /* Increased line height for better readability */
+  font-size: 1.05rem; /* Slightly larger font */
   text-align: justify;
   margin: 0;
+  word-spacing: 0.08em; /* Better word spacing */
+  letter-spacing: 0.01em; /* Slight letter spacing */
+  hyphens: auto; /* Allow hyphenation for long words */
+  overflow-wrap: break-word; /* Ensure long words break properly */
+  flex: 1; /* Allow text to expand */
 }
 
 /* 响应式设计 */
+@media (max-width: 1200px) {
+  .experience-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .experience-section {
+    padding: 80px 0; /* Reduced padding on mobile */
+  }
+
   .experience-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem; /* Increased gap */
   }
 
   .experience-card {
-    padding: 1.5rem;
+    padding: 2rem; /* Increased mobile padding */
+    min-height: 320px; /* Adjusted minimum height for mobile */
   }
 
   .card-header {
     flex-direction: column;
     text-align: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  .card-icon {
+    width: 55px; /* Slightly larger on mobile */
+    height: 55px;
+    font-size: 2.2rem;
+  }
+
+  .card-title {
+    font-size: 1.4rem; /* Slightly larger on mobile */
+  }
+
+  .card-content p {
+    font-size: 1rem; /* Consistent mobile font size */
+    text-align: left; /* Left align on mobile for better readability */
+    line-height: 1.7; /* Slightly tighter line height on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-card {
+    padding: 1.5rem;
+    min-height: 280px;
+  }
+
+  .card-header {
+    margin-bottom: 1.2rem;
   }
 
   .card-icon {
@@ -119,5 +178,6 @@
 
   .card-content p {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
