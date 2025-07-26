@@ -81,15 +81,15 @@
 .basic-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
+  gap: 0.5rem;  /* 从0.8rem减小到0.5rem */
+  margin-bottom: 1rem;  /* 从1.5rem减小到1rem */
 }
 
 .info-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0;
+  padding: 0.3rem 0;  /* 从0.4rem减小到0.3rem */
   /* Remove individual margin-bottom since we're using grid gap */
   border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
@@ -120,14 +120,14 @@
 .info-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.25rem;  /* 从0.4rem减小到0.25rem */
   flex: 1;
 }
 
 .info-tag {
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;  /* 从0.2rem 0.6rem减小到0.15rem 0.5rem */
+  border-radius: 10px;  /* 从12px减小到10px */
+  font-size: 0.7rem;  /* 从0.75rem减小到0.7rem */
   font-weight: 500;
   white-space: nowrap;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -143,18 +143,20 @@
 /* Bio Section - Simplified */
 .bio-section {
   margin-top: 0;
+  padding-top: 0.8rem;  /* 添加少量顶部间距 */
+  border-top: 1px solid rgba(102, 126, 234, 0.1);  /* 添加分隔线 */
 }
 
 .bio-title {
-  font-size: 1rem;
+  font-size: 0.9rem;  /* 从1rem减小到0.9rem */
   color: #666;
   font-weight: 500;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;  /* 从0.8rem减小到0.5rem */
 }
 
 .bio-text {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;  /* 从1rem减小到0.95rem */
+  line-height: 1.5;  /* 从1.6减小到1.5 */
   color: #444;
   margin: 0;
   text-align: justify;
@@ -186,24 +188,25 @@
   
   .basic-info-grid {
     grid-template-columns: 1fr;
-    gap: 0.6rem;
+    gap: 0.4rem;  /* 移动端进一步减小gap */
   }
   
   .info-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.3rem;
-    padding: 0.8rem 0;
+    gap: 0.25rem;  /* 减小内部gap */
+    padding: 0.5rem 0;  /* 移动端稍微增加padding确保可读性 */
   }
   
   .info-label,
   .info-value {
-    font-size: 0.9rem;
+    font-size: 0.85rem;  /* 从0.9rem减小 */
   }
   
   .bio-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;  /* 从0.95rem减小 */
     text-align: left;
+    line-height: 1.4;  /* 进一步减小行高 */
   }
   
   .avatar-wrapper {
