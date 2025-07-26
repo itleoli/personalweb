@@ -55,13 +55,7 @@ const AboutMe = () => {
     <div className="info-item">
       {icon && <span className="info-icon">{icon}</span>}
       <span className="info-label">{label}:</span>
-      <div className="info-tags">
-        {items?.map((item, index) => (
-          <span key={index} className="info-tag">
-            {item}
-          </span>
-        ))}
-      </div>
+      <span className="info-value">{items?.join('、')}</span>
     </div>
   );
 

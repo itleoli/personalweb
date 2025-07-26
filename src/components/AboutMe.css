@@ -116,30 +116,6 @@
   word-wrap: break-word;
 }
 
-/* Info Tags - New style for skills, interests, languages */
-.info-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;  /* 从0.4rem减小到0.25rem */
-  flex: 1;
-}
-
-.info-tag {
-  padding: 0.15rem 0.5rem;  /* 从0.2rem 0.6rem减小到0.15rem 0.5rem */
-  border-radius: 10px;  /* 从12px减小到10px */
-  font-size: 0.7rem;  /* 从0.75rem减小到0.7rem */
-  font-weight: 500;
-  white-space: nowrap;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  transition: all 0.2s ease;
-}
-
-.info-tag:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
 /* Bio Section - Simplified */
 .bio-section {
   margin-top: 0;
@@ -218,10 +194,5 @@
 @media (max-width: 480px) {
   .unified-info {
     padding: 1rem;
-  }
-  
-  .info-tag {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
   }
 }
