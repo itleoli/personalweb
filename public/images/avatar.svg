@@ -1,0 +1,47 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 定义径向渐变，从中心到边缘逐渐透明 -->
+    <radialGradient id="avatarGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#764ba2;stop-opacity:0.9" />
+      <stop offset="95%" style="stop-color:#667eea;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- 定义头像图标的渐变 -->
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- 定义发光效果 -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景圆形，带有径向渐变 -->
+  <circle cx="100" cy="100" r="95" fill="url(#avatarGradient)" filter="url(#glow)"/>
+  
+  <!-- 头像图标 - 人物轮廓 -->
+  <g fill="url(#iconGradient)" opacity="0.9">
+    <!-- 头部 -->
+    <circle cx="100" cy="75" r="25"/>
+    
+    <!-- 身体 -->
+    <path d="M 100 95 
+             C 85 95, 70 105, 65 125
+             C 63 135, 65 145, 70 150
+             L 130 150
+             C 135 145, 137 135, 135 125
+             C 130 105, 115 95, 100 95 Z"/>
+  </g>
+  
+  <!-- 装饰性圆圈 -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <circle cx="100" cy="100" r="65" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+</svg>

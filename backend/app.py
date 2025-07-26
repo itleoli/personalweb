@@ -17,8 +17,21 @@ app.config['SECRET_KEY'] = 'your-secret-key-change-in-production'
 DATABASE = 'database.db'
 
 # 默认管理员账号
-ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD = 'admin123'
+# 从配置文件读取管理员信息
+def load_admin_config():
+    try:
+        admin_config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'admin.json')
+        with open(admin_config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+            return config.get('username', 'admin'), config.get('password', 'admin123')
+    except FileNotFoundError:
+        print("管理员配置文件未找到，使用默认账号")
+        return 'admin', 'admin123'
+    except Exception as e:
+        print(f"读取管理员配置失败: {e}")
+        return 'admin', 'admin123'
+
+ADMIN_USERNAME, ADMIN_PASSWORD = load_admin_config()
 
 def init_db():
     """初始化数据库"""

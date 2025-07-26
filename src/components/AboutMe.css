@@ -16,20 +16,19 @@
   align-items: center;
 }
 
-.image-placeholder {
+.avatar-image {
   width: 300px;
   height: 300px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 600;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .background-overlay {
@@ -93,6 +92,58 @@
   font-size: 1.1rem;
 }
 
+.skills-section,
+.interests-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.skills-section h3,
+.interests-section h3 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.skills-tags,
+.interests-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+}
+
+.interest-tag {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  color: #8e2a43;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(255, 154, 158, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.interest-tag:hover {
+  transform: translateY(-2px);
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .about-content {
@@ -101,7 +152,7 @@
     text-align: center;
   }
 
-  .image-placeholder {
+  .avatar-image {
     width: 250px;
     height: 250px;
   }

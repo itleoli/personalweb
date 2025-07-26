@@ -19,6 +19,9 @@ dist/
 *.db
 database.db
 
+# Configuration files with sensitive data
+data/admin.json
+
 # Logs
 *.log
 logs/

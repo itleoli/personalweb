@@ -1,0 +1,17 @@
+{
+  "username": "admin",
+  "password": "admin123",
+  "description": "管理员账号配置模板",
+  "setup_instructions": {
+    "1": "复制此文件为 admin.json",
+    "2": "修改 username 字段为您想要的用户名",
+    "3": "修改 password 字段为您的安全密码",
+    "4": "建议使用包含字母、数字和特殊字符的复杂密码"
+  },
+  "security_notes": [
+    "admin.json 文件已被添加到 .gitignore，不会被提交到代码仓库",
+    "请妥善保管您的管理员账号信息",
+    "在生产环境中，建议使用环境变量或加密方式存储密码",
+    "定期更换管理员密码以确保安全"
+  ]
+}

@@ -94,9 +94,8 @@ const AdminLogin = () => {
         </form>
 
         <div className="login-info">
-          <p>默认管理员账号：</p>
-          <p>用户名: admin</p>
-          <p>密码: admin123</p>
+          <p>请使用管理员账号登录</p>
+          <p>账号信息请查看 data/admin.json 文件</p>
         </div>
 
         <div className="back-to-home">
