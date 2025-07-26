@@ -132,7 +132,7 @@
 
 .experiences-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* Increased from 400px to accommodate more content */
   gap: 2.5rem;
   align-items: start;
 }
@@ -150,7 +150,7 @@
     0 1px 8px rgba(0, 0, 0, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.8);
   height: fit-content;
-  min-height: 300px;
+  min-height: 350px; /* Increased minimum height for longer content */
   display: flex;
   flex-direction: column;
 }
@@ -272,6 +272,7 @@
 .content-wrapper {
   flex: 1;
   margin-bottom: 1.5rem;
+  min-height: fit-content; /* Ensure content determines height */
 }
 
 .card-text {
@@ -284,11 +285,22 @@
   word-spacing: 0.05em;
   letter-spacing: 0.01em;
   transition: all 0.3s ease;
+  /* Enhanced text handling for longer content */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  /* Ensure text is fully visible */
+  overflow: visible;
+  text-overflow: unset;
+  max-width: 100%;
 }
 
 .experience-card.expanded .card-text {
   font-size: 1.1rem;
   line-height: 1.8;
+  /* Additional space for expanded content */
+  margin-bottom: 1.5rem;
 }
 
 /* Expand Button */
@@ -520,7 +532,7 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .experiences-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Adjusted for better content display */
     gap: 2rem;
   }
 }
@@ -536,7 +548,7 @@
   }
   
   .experience-card {
-    min-height: 250px;
+    min-height: 300px; /* Increased minimum height for mobile */
   }
   
   .card-header {
@@ -560,7 +572,13 @@
   
   .card-text {
     font-size: 1rem;
-    text-align: left;
+    text-align: left; /* Better readability on mobile */
+    line-height: 1.6; /* Improved line height for mobile */
+  }
+  
+  .experience-card.expanded .card-text {
+    font-size: 1.05rem; /* Slightly larger when expanded on mobile */
+    line-height: 1.7;
   }
   
   .statistics {
