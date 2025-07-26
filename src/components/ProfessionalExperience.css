@@ -70,33 +70,20 @@
   border-bottom: 2px solid #f1f3f4;
 }
 
-.icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--icon-color), transparent);
-  opacity: 0.1;
-  position: relative;
-}
-
-.card-icon {
-  font-size: 1.8rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
 .card-title {
   font-size: 1.4rem;
   font-weight: 600;
   color: #2c3e50;
   margin: 0;
   flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
 }
 
 /* Card Body */
@@ -230,17 +217,13 @@
     text-align: left;
   }
   
-  .icon-container {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .card-icon {
-    font-size: 1.5rem;
-  }
-  
   .card-title {
     font-size: 1.2rem;
+    justify-content: flex-start;
+  }
+  
+  .title-icon {
+    font-size: 1.4rem;
   }
   
   .card-text {

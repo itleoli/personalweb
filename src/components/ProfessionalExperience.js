@@ -56,12 +56,10 @@ const ProfessionalExperience = () => {
     return (
       <div className={`experience-card ${isExpanded ? 'expanded' : ''}`}>
         <div className="card-header">
-          <div className="icon-container">
-            <span className="card-icon" style={{ '--icon-color': experience.color }}>
-              {experience.icon}
-            </span>
-          </div>
-          <h3 className="card-title">{experience.title}</h3>
+          <h3 className="card-title">
+            <span className="title-icon">{experience.icon}</span>
+            {experience.title}
+          </h3>
         </div>
 
         <div className="card-body">
