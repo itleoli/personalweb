@@ -113,3 +113,24 @@
 .login-info p {
   margin: 0.25rem 0;
 }
+
+.back-to-home {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.back-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}

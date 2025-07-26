@@ -104,7 +104,7 @@ python app.py
 
 - 前端：http://localhost:3000
 - 后端API：http://localhost:5000
-- 管理后台：点击导航栏"管理后台"按钮
+- 管理后台：http://localhost:3000/admin
 
 ## 项目结构
 

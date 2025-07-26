@@ -21,8 +21,13 @@
   font-size: 1.8rem;
 }
 
+.header-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.home-btn,
 .logout-btn {
-  background: #dc3545;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -30,6 +35,19 @@
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
+}
+
+.home-btn {
+  background: #6c757d;
+}
+
+.home-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+.logout-btn {
+  background: #dc3545;
 }
 
 .logout-btn:hover {

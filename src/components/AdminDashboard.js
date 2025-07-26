@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminDashboard.css';
 
-const AdminDashboard = ({ onLogout }) => {
+const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // 检查登录状态
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      navigate('/admin');
+      return;
+    }
     fetchMessages();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminToken');
+    navigate('/admin');
+  };
 
   const fetchMessages = async () => {
     try {
@@ -23,7 +37,7 @@ const AdminDashboard = ({ onLogout }) => {
     } catch (error) {
       setError('获取留言失败');
       if (error.response?.status === 401) {
-        onLogout();
+        handleLogout();
       }
     } finally {
       setLoading(false);
@@ -75,9 +89,14 @@ const AdminDashboard = ({ onLogout }) => {
     <div className="admin-dashboard">
       <div className="dashboard-header">
         <h1>管理员后台</h1>
-        <button onClick={onLogout} className="logout-btn">
-          退出登录
-        </button>
+        <div className="header-buttons">
+          <button onClick={() => navigate('/')} className="home-btn">
+            返回主页
+          </button>
+          <button onClick={handleLogout} className="logout-btn">
+            退出登录
+          </button>
+        </div>
       </div>
 
       <div className="dashboard-content">

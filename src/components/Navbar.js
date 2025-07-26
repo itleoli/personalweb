@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-const Navbar = ({ onAdminClick }) => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
@@ -37,12 +37,6 @@ const Navbar = ({ onAdminClick }) => {
             onClick={() => scrollToSection('contact')}
           >
             联系我
-          </button>
-          <button 
-            className="nav-link admin-link"
-            onClick={onAdminClick}
-          >
-            管理后台
           </button>
         </div>
 

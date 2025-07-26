@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminLogin.css';
 
-const AdminLogin = ({ onLogin }) => {
+const AdminLogin = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // 检查是否已登录，如果是则直接跳转到dashboard
+    const token = localStorage.getItem('adminToken');
+    if (token) {
+      navigate('/admin/dashboard');
+    }
+  }, [navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +38,7 @@ const AdminLogin = ({ onLogin }) => {
       const response = await axios.post('/api/admin/login', credentials);
       if (response.data.token) {
         localStorage.setItem('adminToken', response.data.token);
-        onLogin(true);
+        navigate('/admin/dashboard');
       }
     } catch (error) {
       setError('用户名或密码错误');
@@ -87,6 +97,16 @@ const AdminLogin = ({ onLogin }) => {
           <p>默认管理员账号：</p>
           <p>用户名: admin</p>
           <p>密码: admin123</p>
+        </div>
+
+        <div className="back-to-home">
+          <button 
+            type="button" 
+            className="back-btn"
+            onClick={() => navigate('/')}
+          >
+            返回主页
+          </button>
         </div>
       </div>
     </div>
